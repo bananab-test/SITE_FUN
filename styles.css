@@ -1,0 +1,239 @@
+:root {
+  color-scheme: light;
+  --ink: #42253d;
+  --muted: #8a617c;
+  --pink: #f65f91;
+  --pink-dark: #d94478;
+  --cream: #fff9f6;
+  --lavender: #f5eafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  align-items: center;
+  background:
+    radial-gradient(circle at 10% 15%, #ffd4e4 0 8%, transparent 8.5%),
+    radial-gradient(circle at 90% 78%, #ded2fa 0 11%, transparent 11.5%),
+    linear-gradient(135deg, #fff4f7 0%, #f2eafa 100%);
+  color: var(--ink);
+  display: flex;
+  font-family: "DM Sans", sans-serif;
+  justify-content: center;
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 24px;
+}
+
+.card {
+  background: rgb(255 255 255 / 86%);
+  border: 1px solid rgb(255 255 255 / 90%);
+  border-radius: 32px;
+  box-shadow: 0 24px 70px rgb(107 61 108 / 18%);
+  max-width: 620px;
+  padding: clamp(42px, 9vw, 82px) clamp(24px, 8vw, 76px) 32px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.sparkles,
+.heart {
+  color: var(--pink);
+  position: absolute;
+}
+
+.sparkles {
+  font-size: 2rem;
+  right: 11%;
+  top: 10%;
+  transform: rotate(20deg);
+}
+
+.heart {
+  color: #e9a1c2;
+  font-size: 2.7rem;
+  left: 9%;
+  top: 11%;
+  transform: rotate(-15deg);
+}
+
+.eyebrow {
+  color: var(--pink-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: Pacifico, cursive;
+  font-size: clamp(2rem, 5vw, 3.35rem);
+  font-weight: 400;
+  line-height: 1.25;
+  margin: 0 auto;
+  max-width: 480px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.98rem;
+  margin: 22px auto 34px;
+}
+
+.name-form {
+  display: grid;
+  gap: 12px;
+  margin: 0 auto;
+  max-width: 360px;
+  text-align: left;
+}
+
+.name-form label,
+.comment-label {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.name-form input,
+textarea {
+  background: white;
+  border: 2px solid #edddea;
+  border-radius: 14px;
+  color: var(--ink);
+  font: inherit;
+  padding: 13px 15px;
+  width: 100%;
+}
+
+.name-form input:focus,
+textarea:focus {
+  border-color: var(--pink);
+  outline: 3px solid rgb(246 95 145 / 18%);
+}
+
+.comment-label {
+  display: block;
+  margin: 0 auto 8px;
+  max-width: 430px;
+  text-align: left;
+}
+
+.comment-label span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+textarea {
+  display: block;
+  margin: 0 auto 22px;
+  max-width: 430px;
+  min-height: 78px;
+  resize: vertical;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  min-height: 60px;
+  position: relative;
+}
+
+.button {
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  min-width: 132px;
+  padding: 15px 25px;
+  transition: box-shadow 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.button:focus-visible {
+  outline: 4px solid rgb(246 95 145 / 30%);
+  outline-offset: 4px;
+}
+
+.button:disabled {
+  cursor: default;
+  opacity: 0.78;
+}
+
+.button-yes {
+  background: var(--pink);
+  box-shadow: 0 8px 18px rgb(246 95 145 / 30%);
+  color: white;
+}
+
+.button-yes:hover {
+  background: var(--pink-dark);
+  transform: translateY(-3px);
+}
+
+.button-no {
+  background: var(--lavender);
+  color: var(--ink);
+  position: relative;
+  transition: box-shadow 180ms ease, transform 120ms ease, background 180ms ease;
+}
+
+.button-no:hover {
+  background: #eadcf4;
+}
+
+.success {
+  align-items: center;
+  background: #fff0f5;
+  border-radius: 16px;
+  color: var(--pink-dark);
+  display: flex;
+  gap: 9px;
+  justify-content: center;
+  margin: 28px 0 0;
+  padding: 15px;
+}
+
+.error {
+  color: #b22e50;
+  font-size: 0.9rem;
+  margin: 22px 0 0;
+}
+
+.credit {
+  color: #b797ad;
+  font-size: 0.76rem;
+  margin: 46px 0 0;
+}
+
+@media (max-width: 480px) {
+  .card {
+    border-radius: 24px;
+  }
+
+  .heart {
+    left: 7%;
+    top: 7%;
+  }
+
+  .sparkles {
+    right: 7%;
+    top: 6%;
+  }
+
+  .actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+  }
+}
