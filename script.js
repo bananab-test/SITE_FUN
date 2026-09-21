@@ -4,7 +4,7 @@
  * et colle son URL dans emailEndpoint (ex. https://formspree.io/f/xxxxx).
  */
 const CONFIG = {
-  question: "Veux-tu être mon/ma partenaire d’aventure ?",
+  question: "Veux-tu être ma partenaire de course ?",
   emailEndpoint: "https://formspree.io/f/xppwdqey",
   fallbackEmail: "",
   adminPasswordEncoded: "YWxsb2FkbWlu",
