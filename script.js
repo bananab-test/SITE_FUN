@@ -4,7 +4,7 @@
  * et colle son URL dans emailEndpoint (ex. https://formspree.io/f/xxxxx).
  */
 const CONFIG = {
-  question: "Veux-tu être ma partenaire de course ?",
+  question: "Veux-tu être mon/ma partenaire d’aventure ?",
   emailEndpoint: "https://formspree.io/f/xppwdqey",
   fallbackEmail: "",
   adminPasswordEncoded: "YWxsb2FkbWlu",
@@ -78,6 +78,7 @@ const formatSentTime = (timestamp) =>
   new Date(timestamp).toLocaleTimeString("fr-CA", {
     hour: "2-digit",
     minute: "2-digit",
+    hourCycle: "h23",
   });
 
 const unlockForm = () => {
@@ -237,13 +238,14 @@ const closeConfirmation = () => {
   }
 };
 
-const sendResponse = async () => {
+const sendResponse = async (sentAt) => {
   if (CONFIG.emailEndpoint) {
     const formData = new FormData();
     formData.append("response", "Oui");
     formData.append("question", CONFIG.question);
     formData.append("name", visitorName);
     formData.append("comment", commentInput.value.trim());
+    formData.append("sentAt", `Heure locale d’envoi : ${formatSentTime(sentAt)}`);
 
     const response = await fetch(CONFIG.emailEndpoint, {
       body: formData,
@@ -258,7 +260,7 @@ const sendResponse = async () => {
   }
 
   if (CONFIG.fallbackEmail) {
-    const body = `Nom : ${visitorName}\nRéponse : Oui\nCommentaire : ${commentInput.value.trim() || "(aucun)"}`;
+    const body = `Nom : ${visitorName}\nRéponse : Oui\nHeure locale d’envoi : ${formatSentTime(sentAt)}\nCommentaire : ${commentInput.value.trim() || "(aucun)"}`;
     window.location.href = `mailto:${CONFIG.fallbackEmail}?subject=Réponse à ta question&body=${encodeURIComponent(body)}`;
   }
 
@@ -287,14 +289,15 @@ modalConfirm.addEventListener("click", async () => {
   modalIcon.textContent = "✨";
 
   try {
-    const wasSent = await sendResponse();
+    const sentAt = Date.now();
+    const wasSent = await sendResponse(sentAt);
 
     if (wasSent) {
       yesButton.disabled = true;
       noButton.hidden = true;
       hint.hidden = true;
       commentInput.disabled = true;
-      saveSubmissionTime(Date.now());
+      saveSubmissionTime(sentAt);
       success.hidden = false;
       successMessage.textContent = `Réponse envoyée avec succès à ${formatSentTime(responseSentAt)}, ${visitorName} !`;
       submissionSummary.textContent = `Nom : ${visitorName}\nRéponse : Oui\nCommentaire : ${commentInput.value.trim() || "(aucun commentaire)"}`;
