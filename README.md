@@ -33,7 +33,9 @@ commentaire qui seront transmis. Après un envoi Formspree réussi, une fenêtre
 animée confirme la réussite et le bouton est désactivé. Le navigateur bloque les
 nouveaux envois pendant 5 minutes depuis le même appareil. Cette protection est
 côté navigateur; pour une protection anti-spam complète, conserve aussi les
-protections anti-spam de Formspree.
+protections anti-spam de Formspree. L’heure locale d’envoi est également
+transmise dans le courriel au format 24 heures; l’horodatage automatique de
+Formspree peut toutefois suivre le fuseau horaire de son serveur.
 
 Un champ administrateur permet aussi de déverrouiller immédiatement le formulaire.
 La valeur n’est pas écrite en clair dans le dépôt, mais elle reste récupérable dans
